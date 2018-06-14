@@ -1,7 +1,7 @@
-﻿@model IEnumerable<MercadoSaoBento.Models.Categoria>
+﻿@model Paginacao<MercadoSaoBento.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Produtos";
+    ViewData["Title"] = "Categorias";
 }
 <div class="container-fluid">
     <h2>Categorias</h2>
@@ -9,11 +9,11 @@
     <p>
         <a asp-action="Create" class="btn btn-default">Cadastrar</a>
     </p>
-    <table class="table table-responsive table-hover">
+    <table style="width: 60%;"class="table table-responsive table-hover">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemNome"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Nome</a>
                 </th>
                 <th></th>
             </tr>
@@ -25,7 +25,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
-                    <td>
+                    <td style="padding-left: 15%;">
                         <a asp-action="Edit" asp-route-id="@item.CategoriaID"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
                         <a asp-action="Delete" asp-route-id="@item.CategoriaID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
@@ -33,7 +33,22 @@
             }
         </tbody>
     </table>
+
+    @{
+        var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
+        var proximoDesabilitado = !Model.TemPaginaProxima ? "disabled" : "";
+    }
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina - 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @anteriorDesabilitado"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina + 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
     <div>
-        <a asp-area="" asp-controller="Produtos" asp-action="Index" class="btn btn-default">Voltar</a>
+        <a asp-area="" asp-controller="Produtos" asp-action="Index" style="margin-top: 2%;" class="btn btn-default">Voltar</a>
     </div>
 </div>

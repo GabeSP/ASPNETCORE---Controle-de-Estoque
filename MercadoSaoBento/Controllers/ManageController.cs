@@ -102,7 +102,7 @@ namespace MercadoSaoBento.Controllers
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Seu Perfil foi atualizado com Sucesso!";
             return RedirectToAction(nameof(Index));
         }
 
@@ -126,7 +126,7 @@ namespace MercadoSaoBento.Controllers
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Verificação de Email enviada.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -173,7 +173,7 @@ namespace MercadoSaoBento.Controllers
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "Sua senha foi Atualizada.";
 
             return RedirectToAction(nameof(ChangePassword));
         }

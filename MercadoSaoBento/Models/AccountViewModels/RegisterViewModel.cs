@@ -8,6 +8,8 @@ namespace MercadoSaoBento.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        [Display(Name ="Nome")]
+        public string Username { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

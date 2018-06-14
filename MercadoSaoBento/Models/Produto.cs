@@ -26,8 +26,11 @@ namespace MercadoSaoBento.Models
             Display(Name = "Quantidade")]
         public int QtdEstoque { get; set; }
 
+        [Display(Name = "Fornecedor")]
         public int FornecedorID { get; set; }
-        public Fornecedor Fornecedor{get; set;}
+        public Fornecedor Fornecedor{get; set; }
+
+        [Display(Name = "Categoria")]
         public int CategoriaID { get; set; }
         public Categoria Categoria { get; set; }
 

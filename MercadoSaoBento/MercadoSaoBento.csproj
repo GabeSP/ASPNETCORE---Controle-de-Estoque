@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-MercadoSaoBento-548CA3B8-9ED0-46B3-AF00-324A10B5A390</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20180614181835_User.cs" />
+    <Compile Remove="Data\Migrations\20180614181835_User.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />

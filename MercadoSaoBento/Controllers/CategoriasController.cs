@@ -22,9 +22,46 @@ namespace MercadoSaoBento.Controllers
         }
 
         // GET: Categorias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ordem,
+            string filtroAtual,
+            string procurarLinha,
+            int? pagina)
         {
-            return View(await _context.Categorias.ToListAsync());
+            ViewData["OrdemAtual"] = ordem;
+            ViewData["OrdemNome"] = ordem == "Nome" ? "nome_desc" : "Nome";
+
+            if (procurarLinha != null)
+            {
+                pagina = 1;
+            }
+            else
+            {
+                procurarLinha = filtroAtual;
+            }
+
+            ViewData["FiltroPesquisarAtual"] = procurarLinha;
+
+            var categorias = from c in _context.Categorias select c;
+            if (!String.IsNullOrEmpty(procurarLinha))
+            {
+                categorias = categorias.Where(p => p.Nome.Contains(procurarLinha));
+            }
+
+            switch (ordem)
+            {
+                case "Nome":
+                    categorias = categorias.OrderBy(p => p.Nome);
+                    break;
+                case "nome_desc":
+                    categorias = categorias.OrderByDescending(p => p.Nome);
+                    break;
+
+                default:
+                    categorias = categorias.OrderBy(p => p.CategoriaID);
+                    break;
+            }
+            int tamanhoPagina = 7;
+            return View(await Paginacao<Categoria>.CreateAsync(categorias.AsNoTracking(), pagina ?? 1, tamanhoPagina));
         }
 
         // GET: Categorias/Details/5

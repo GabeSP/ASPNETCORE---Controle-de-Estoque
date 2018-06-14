@@ -2,7 +2,7 @@
 .titulo-principal {
     width: 100vw;
     margin-top: 10%;
-    margin-left: -10%;
+    margin-left: -15%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -15,7 +15,7 @@
     }
 
 .bento {
-    margin-top: 12%;
+    margin-top: 10%;
     margin-left: -6%;
     color: saddlebrown;
     font-weight: bolder;
@@ -25,10 +25,33 @@
     height: 100vh;
 }
 
-
 .imagem-icone {
     width: 90px;
     height: 100px;
+}
+
+.ajuda {
+    color: saddlebrown;
+    font-weight: bolder;
+}
+.texto-ajuda {
+    font-size: 1.2em;
+    text-indent: 2ch;
+}
+.lista-ajuda li {
+    font-family: 'Century Gothic', sans-serif;
+    color: #999;
+    font-size: 1.2em;
+}
+.registro {
+    position: absolute;
+    width: 100%;
+    top: 83%;
+}
+.usuario {
+    position: absolute;
+    width: 100%;
+    top: 77.2%;
 }
 
 @media (max-width: 768px) {

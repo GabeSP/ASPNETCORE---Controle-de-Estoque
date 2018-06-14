@@ -101,8 +101,8 @@ namespace MercadoSaoBento.Controllers
         // GET: Produtos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "CategoriaID");
-            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "FornecedorID");
+            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "Nome");
+            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "Nome");
             return View();
         }
 
@@ -147,8 +147,8 @@ namespace MercadoSaoBento.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "CategoriaID", produto.CategoriaID);
-            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "FornecedorID", produto.FornecedorID);
+            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "Nome", produto.CategoriaID);
+            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "Nome", produto.FornecedorID);
             return View(produto);
         }
 
@@ -182,8 +182,8 @@ namespace MercadoSaoBento.Controllers
                     "consulte o administrador do sitema.");
                 }
             }
-            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "CategoriaID", produtoToUpdate.CategoriaID);
-            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "FornecedorID", produtoToUpdate.FornecedorID);
+            ViewData["CategoriaID"] = new SelectList(_context.Categorias, "CategoriaID", "Nome", produtoToUpdate.CategoriaID);
+            ViewData["FornecedorID"] = new SelectList(_context.Fornecedores, "FornecedorID", "Nome", produtoToUpdate.FornecedorID);
             return View(produtoToUpdate);
         }
 
