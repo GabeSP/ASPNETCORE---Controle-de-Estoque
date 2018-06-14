@@ -74,7 +74,7 @@ namespace MercadoSaoBento.Controllers
                     produtos = produtos.OrderBy(p => p.ProdutoID);
                     break;
             }
-            int tamanhoPagina = 10;
+            int tamanhoPagina = 6;
             return View(await Paginacao<Produto>.CreateAsync(produtos.Include(p => p.Categoria).Include(p => p.Fornecedor).AsNoTracking(), pagina ?? 1, tamanhoPagina));
         }
 

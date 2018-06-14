@@ -48,10 +48,13 @@
     width: 100%;
     top: 83%;
 }
-.usuario {
-    position: absolute;
-    width: 100%;
-    top: 77.2%;
+.user.active {
+    font-size: .5em;
+}
+
+.registro.active {
+    position:absolute;
+    top: 75%;
 }
 
 @media (max-width: 768px) {
