@@ -15,12 +15,16 @@ namespace MercadoSaoBento.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        public DbSet<Fornecedor> Fornecedores { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Fornecedor>().ToTable("Fornecedor");
+            modelBuilder.Entity<Produto>().ToTable("Produto");
+            modelBuilder.Entity<Categoria>().ToTable("Categoria");
         }
     }
 }

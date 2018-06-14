@@ -1,0 +1,27 @@
+﻿@model MercadoSaoBento.Models.Categoria
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+<div class="container-fluid">
+    <h2>Excluir</h2>
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+    <div>
+        <h4>Categoria</h4>
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CategoriaID" />
+            <input type="submit" value="Confirmar" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-default">Voltar</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@model Paginacao<MercadoSaoBento.Models.Produto>
+
+@{
+    ViewData["Title"] = "Produtos";
+
+}
+
+<div class="container-fluid">
+    <h2>Consultar Produtos</h2>
+    <a asp-action="Create" class="btn btn-default">Cadastrar</a>
+    <div class="flex-container">
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color pesquisar">
+                <p>
+                    Pesquisar pelo Nome: <input type="text" name="procurarLinha" value="@ViewData["FiltroPesquisarAtual"]" />
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                    <a asp-action="Index">Lista Completa</a>
+                </p>
+            </div>
+        </form>
+    </div>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemCodigo"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Código</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemNome"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Nome</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemPreco"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Preço</a>
+                </th>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modeItel => item.ProdutoID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        R$ @Html.DisplayFor(modelItem => item.Preco) @*@item.PrecoVenda.ToString("C")*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QtdEstoque)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-duplicate btn btn-default"></i></a>
+                        <a asp-action="DecrementaQtd" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-minus btn btn-warning"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="modal" id="modal"></div>
+    @{
+        var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
+        var proximoDesabilitado = !Model.TemPaginaProxima ? "disabled" : "";
+    }
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina - 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @anteriorDesabilitado"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina + 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    <div class="botoes-top">
+        <a asp-area="" asp-controller="Fornecedores" asp-action="Index" class="btn btn-default botao-top">Fornecedores</a>
+        <a asp-area="" asp-controller="Categorias" asp-action="Index" class="btn btn-default botao-top">Categorias</a>
+    </div>
+</div>
+

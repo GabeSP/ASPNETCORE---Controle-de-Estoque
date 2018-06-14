@@ -14,14 +14,14 @@ namespace MercadoSaoBento.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A senha deve conter pelo menos uma letra Maíusculo, um Número e um Símbolo(@*#&-!)", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar Senha")]
+        [Compare("Password", ErrorMessage = "As Senhas não correspondem")]
         public string ConfirmPassword { get; set; }
     }
 }

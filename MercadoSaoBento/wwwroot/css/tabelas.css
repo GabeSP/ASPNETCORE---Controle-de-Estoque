@@ -1,0 +1,13 @@
+﻿.container-fluid {
+    width: 70vw;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.form-group {
+    width: 30vw;
+}
+
+.row {
+    margin-top: -5%;
+}

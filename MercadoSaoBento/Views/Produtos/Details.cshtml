@@ -1,0 +1,55 @@
+﻿@model MercadoSaoBento.Models.Produto
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+<div class="container-fluid">
+    <h2>Detalhes</h2>
+
+    <div>
+        <h4>Produto</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
+            <dd>
+                R$ @Html.DisplayFor(model => model.Preco)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.QtdEstoque)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.QtdEstoque)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Categoria.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Fornecedor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Fornecedor.Nome)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
+        <a asp-action="Edit" asp-route-id="@Model.ProdutoID" class="btn btn-default">Editar</a>
+    </div>
+</div>

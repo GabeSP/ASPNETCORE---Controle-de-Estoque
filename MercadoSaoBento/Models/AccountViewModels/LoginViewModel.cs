@@ -8,15 +8,16 @@ namespace MercadoSaoBento.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Email Inválido")]
+        [EmailAddress(ErrorMessage = "Email Inválido")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Senha Inválida")]
+        [Display(Name = "Senha")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Lembrar Senha")]
         public bool RememberMe { get; set; }
     }
 }
