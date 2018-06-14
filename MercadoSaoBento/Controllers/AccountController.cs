@@ -78,7 +78,7 @@ namespace MercadoSaoBento.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Usuario ou Senha Inválido");
                     return View(model);
                 }
             }

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoSaoBento.Data;
 using MercadoSaoBento.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoSaoBento.Controllers
 {
+    [Authorize]
     public class FornecedoresController : Controller
     {
         private readonly ApplicationDbContext _context;
