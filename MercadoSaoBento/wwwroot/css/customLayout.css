@@ -4,7 +4,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
     position: absolute;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 p {
@@ -191,11 +191,10 @@ ul ul a {
     }
 
     #sidebar {
-        min-width: 90px;
-        max-width: 90px;
+        min-width: 80px;
+        max-width: 80px;
         text-align: center;
         margin-left: -80px !important;
-        z-index: 1;
     }
 
         #sidebar.active {

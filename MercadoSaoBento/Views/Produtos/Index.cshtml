@@ -34,7 +34,7 @@
                 <th>
                     Quantidade
                 </th>
-                <th>
+                <th id="invisivel">
                     Descrição
                 </th>
                 <th></th>
@@ -56,14 +56,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.QtdEstoque)
                     </td>
-                    <td>
+                    <td id="invisivel">
                         @Html.DisplayFor(modelItem => item.Descricao)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
                         <a asp-action="Details" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-duplicate btn btn-default"></i></a>
-                        <a asp-action="DecrementaQtd" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-minus btn btn-warning"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                        <a asp-action="DecrementaQtd" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-minus btn btn-warning"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoID" id="invisivel" ><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
             }
@@ -88,5 +88,6 @@
         <a asp-area="" asp-controller="Fornecedores" asp-action="Index" class="btn btn-default botao-top">Fornecedores</a>
         <a asp-area="" asp-controller="Categorias" asp-action="Index" class="btn btn-default botao-top">Categorias</a>
     </div>
+    <div class="espaco"></div>
 </div>
 
