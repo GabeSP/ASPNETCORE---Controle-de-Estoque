@@ -17,9 +17,10 @@ p {
 
 #link-sair {
     background-color: saddlebrown;
+    color: white;
     border: none;
     position: absolute;
-    top: 88.8%;
+    top: 85.8%;
     left: -51%;
     width: 151%;
     padding: 10px;
@@ -244,4 +245,26 @@ ul ul a {
         .container-tabela .btn {
             font-size: 1em;
         }
+
+    #link-sair {
+        left: -25%;
+        width: 124.5%;
+    }
+}
+@media (width: 320px) {
+    body {
+        font-size: 1em;
+    }
+    .bento {
+        margin-top: 25%!important;
+    }
+    .botoes-top {
+        font-size: .8em;
+        margin-top: 0%!important;
+        margin-left: -25%!important;
+    }
+    .container-fluid {
+        margin-left: -22%!important;
+        margin-top: 12%!important;
+    }
 }

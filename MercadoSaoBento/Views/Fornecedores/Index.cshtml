@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Fornecedores</h2>
 
@@ -31,10 +34,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
-                    <td>
+                    <td id="cnpj">
                         @Html.DisplayFor(modelItem => item.CNPJ)
                     </td>
-                    <td>
+                    <td id="telefone">
                         @Html.DisplayFor(modelItem => item.Telefone)
                     </td>
                     <td>
@@ -50,3 +53,13 @@
         <a asp-area="" asp-controller="Produtos" asp-action="Index" class="btn btn-default">Voltar</a>
     </div>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery-mask-plugin/src/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#telefone').mask('(00)00000-0000');
+            $("#cnpj").mask('00.000.000/0000-00', { reverse: true });
+        });
+    </script>
+}

@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Editar";
 }
-
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
 <h2>Editar</h2>
 
 <h4>Fornecedor</h4>
@@ -20,12 +22,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="CNPJ" class="control-label"></label>
-                <input asp-for="CNPJ" class="form-control" />
+                <input asp-for="CNPJ" id="cnpj" class="form-control" />
                 <span asp-validation-for="CNPJ" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
+                <input asp-for="Telefone" id="telefone" class="form-control" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,4 +40,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="~/lib/jquery-mask-plugin/src/jquery.mask.js"></script>
+        <script>
+        $(document).ready(function () {
+            $('#telefone').mask('(00)00000-0000');
+            $("#cnpj").mask('00.000.000/0000-00', { reverse: true });
+        });
+        </script>}

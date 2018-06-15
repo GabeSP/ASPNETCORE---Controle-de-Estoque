@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Excluir";
 }
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Excluir</h2>
     <p class="text-danger">@ViewData["ErrorMessage"]</p>
@@ -37,3 +40,13 @@
         </form>
     </div>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery-mask-plugin/src/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#telefone').mask('(00)00000-0000');
+            $("#cnpj").mask('00.000.000/0000-00', { reverse: true });
+        });
+    </script>
+}

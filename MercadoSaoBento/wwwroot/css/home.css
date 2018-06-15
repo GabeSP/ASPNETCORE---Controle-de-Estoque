@@ -68,3 +68,11 @@
         margin-left: -10%;
     }
 }
+
+@media (max-width: 490px) {
+    .titulo-principal {
+        margin-top: 40%;
+        margin-left: -18%;
+    }
+
+}

@@ -32,4 +32,32 @@
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\lib\jquery-mask-plugin\.gitignore" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\.jshintrc" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\.ruby-version" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\.travis.yml" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\CHANGELOG.md" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\CONTRIBUTING.md" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\deploy.rb" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\dist\jquery.mask.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\dist\jquery.mask.min.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\docker-compose.yml" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\Dockerfile" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\Gruntfile.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\ISSUE_TEMPLATE.md" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\LICENSE" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\package.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\README.md" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\src\jquery.mask.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\jquery.mask.test.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\qunit.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\sinon-1.10.3.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\sinon-qunit-1.0.0.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\sinon-qunit.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\zepto\data.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\zepto\event.js" />
+    <None Include="wwwroot\lib\jquery-mask-plugin\test\zepto\zepto.min.js" />
+  </ItemGroup>
+
 </Project>

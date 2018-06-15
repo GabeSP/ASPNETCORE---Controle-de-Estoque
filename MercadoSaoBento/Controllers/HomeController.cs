@@ -17,14 +17,14 @@ namespace MercadoSaoBento.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
-
+        [Authorize]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

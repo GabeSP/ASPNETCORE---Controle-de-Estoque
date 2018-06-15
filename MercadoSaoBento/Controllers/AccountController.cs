@@ -212,6 +212,7 @@ namespace MercadoSaoBento.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
