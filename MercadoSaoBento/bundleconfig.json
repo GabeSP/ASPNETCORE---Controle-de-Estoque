@@ -3,33 +3,36 @@
 [
   {
     "outputFileName": "wwwroot/css/site.min.css",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/site.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/css/customLayout.css",
+    "outputFileName": "wwwroot/css/customLayout.min.css",
+    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/customLayout.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/css/home.css",
+    "outputFileName": "wwwroot/css/home.min.css",
+    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/home.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/css/tabelas.css",
+    "outputFileName": "wwwroot/css/tabelas.min.css",
+    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/tabelas.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/css/TelaLogin.css",
+    "outputFileName": "wwwroot/css/site.min.css",
+    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/TelaLogin.css"
+      "wwwroot/css/site.css"
     ]
   },
   {

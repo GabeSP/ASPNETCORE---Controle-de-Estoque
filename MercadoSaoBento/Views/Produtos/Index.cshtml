@@ -4,7 +4,9 @@
     ViewData["Title"] = "Produtos";
 
 }
-
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Consultar Produtos</h2>
     <a asp-action="Create" class="btn btn-default">Cadastrar</a>
@@ -63,7 +65,7 @@
                         <a asp-action="Edit" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
                         <a asp-action="Details" asp-route-id="@item.ProdutoID"><i class="glyphicon glyphicon-duplicate btn btn-default"></i></a>
                         <a asp-action="DecrementaQtd" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-minus btn btn-warning"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.ProdutoID" id="invisivel" ><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
             }
