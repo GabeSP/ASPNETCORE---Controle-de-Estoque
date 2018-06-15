@@ -18,11 +18,10 @@ p {
 #link-sair {
     background-color: saddlebrown;
     border: none;
-    display: inline;
     position: absolute;
     top: 88.8%;
     left: -51%;
-    /*width: 151%;*/
+    width: 151%;
     padding: 10px;
 }
     #link-sair span {
