@@ -104,15 +104,15 @@ namespace MercadoSaoBento.Controllers
         public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada, int? id)
         {
 
-            var produto = await _context.movEntradas
-                .Include(p => p.Produto)
-                .AsNoTracking()
-                .SingleAsync(m => m.movEntradaID == id);
+            //var produto = await _context.movEntradas
+            //    .Include(p => p.Produto)
+                //.AsNoTracking()
+                //.SingleAsync(m => m.movEntradaID == id);
 
             if (ModelState.IsValid)
             {
                 _context.Add(movEntrada);
-                produto.Produto.QtdEstoque += movEntrada.Quantidade;
+                //produto.Produto.QtdEstoque += movEntrada.Quantidade;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
