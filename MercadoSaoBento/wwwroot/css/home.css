@@ -74,5 +74,16 @@
         margin-top: 40%;
         margin-left: -18%;
     }
+    .texto-ajuda {
+        font-size: 2em!important;
+    }
 
+}
+@media (max-width: 320px) {
+    .titulo-principal {
+        margin-left: -35%;
+    }
+    .titulo-principal h2 {
+        font-size: 2.5em;
+    }
 }

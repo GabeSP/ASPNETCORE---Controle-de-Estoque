@@ -9,13 +9,13 @@
 <link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Consultar Produtos</h2>
-    <a asp-action="Create" class="btn btn-default">Cadastrar</a>
+    <a asp-action="Create" class="btn btn-default" id="invisivel">Cadastrar</a>
     <div class="flex-container">
         <form asp-action="Index" method="get">
             <div class="form-actions no-color pesquisar">
                 <p>
                     Pesquisar pelo Nome: <input type="text" name="procurarLinha" value="@ViewData["FiltroPesquisarAtual"]" />
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                    <input type="submit" value="Pesquisar" class="btn btn-default botao-pesquisar" />
                     <a asp-action="Index">Lista Completa</a>
                 </p>
             </div>

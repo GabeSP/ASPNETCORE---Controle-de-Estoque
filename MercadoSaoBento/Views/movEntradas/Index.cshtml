@@ -10,27 +10,28 @@
 <link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Entrada</h2>
-    <a asp-action="Create" class="btn btn-primary">Gravar Nova Entrada</a>
+    <a asp-action="Create" class="btn btn-primary" id="invisivel">Gravar Nova Entrada</a>
     <div class="flex-container">
         <form asp-action="Index" method="get">
             <div class="form-actions no-color pesquisar">
                 <p>
                     Pesquisar pelo Nome do Produto: <input type="text" name="procurarLinha" value="@ViewData["FiltroPesquisarAtual"]" />
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                    <input type="submit" value="Pesquisar" class="btn btn-default botao-pesquisar" />
                     <a asp-action="Index">Lista Completa</a>
                 </p>
             </div>
         </form>
+        </div>
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
-                    <th>
+                    <th id="invisivel">
                         <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemCodigo"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Código</a>
                     </th>
                     <th>
                         <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemData"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Data Movimentação</a>
                     </th>
-                    <th>
+                    <th id="invisivel">
                         Usuário
                     </th>
                     <th>
@@ -46,13 +47,13 @@
                 @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td id="invisivel">
                         @Html.DisplayFor(modelItem => item.movEntradaID)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.dataEntrada)
                     </td>
-                    <td>
+                    <td id="invisivel">
                         @UserManager.GetUserName(User)
                     </td>
                     <td>
@@ -63,7 +64,7 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.movEntradaID"><i class="glyphicon glyphicon-duplicate btn btn-default"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.movEntradaID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.movEntradaID" id="invisivel"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
         }
