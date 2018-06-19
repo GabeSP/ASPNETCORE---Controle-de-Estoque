@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MercadoSaoBento.Data;
 using MercadoSaoBento.Models;
 using MercadoSaoBento.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MercadoSaoBento
 {
@@ -29,10 +30,26 @@ namespace MercadoSaoBento
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/AccesDenied";
+                options.Cookie.Name = "MercadoSaoBento";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Account/Login";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
