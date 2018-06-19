@@ -9,12 +9,28 @@
     font-size: 4em;
 }
 img {
-    width: 100px;
-    height: 120px;
+    width: 80px;
+    height: 100px;
     position: absolute;
     right: 2%;
-    bottom: 8%;
+    bottom: 5%;
 }
+.botao-principal {
+    position: absolute;
+    font-family: 'Century Gothic', sans-serif;
+    font-weight: bolder!important;
+    text-transform: uppercase;
+    left: 45%;
+    bottom: 25%;
+    color: #262626;
+    background-color: #FFF;
+    border: 1px solid #000!important;
+}
+    .botao-principal:hover {
+        background-color: saddlebrown;
+        color: #FFF!important;
+        transition: ease .7s;
+    }
 footer {
     position: absolute;
     bottom: 0;

@@ -101,16 +101,19 @@ namespace MercadoSaoBento.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada, int id)
+        public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada, int? id)
         {
+
+            var produto = await _context.movEntradas
+                .Include(p => p.Produto)
+                .AsNoTracking()
+                .SingleAsync(m => m.movEntradaID == id);
+
             if (ModelState.IsValid)
             {
                 _context.Add(movEntrada);
+                produto.Produto.QtdEstoque += movEntrada.Quantidade;
                 await _context.SaveChangesAsync();
-
-                //var produto = await _context.Produtos.SingleOrDefaultAsync(m => m.ProdutoID == id);
-                //produto.QtdEstoque += movEntrada.Quantidade;
-                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movEntrada.ProdutoID);
