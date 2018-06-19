@@ -10,25 +10,24 @@ using MercadoSaoBento.Models;
 
 namespace MercadoSaoBento.Controllers
 {
-    public class movEntradasController : Controller
+    public class movSaidasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public movEntradasController(ApplicationDbContext context)
+        public movSaidasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: movEntradas
+        // GET: movSaidas
         public async Task<IActionResult> Index(string ordem,
             string filtroAtual,
             string procurarLinha,
             int? pagina)
         {
             ViewData["OrdemAtual"] = ordem;
-            ViewData["OrdemData"] = ordem == "Data" ? "data_desc" : "Data";
+            ViewData["OrdeData"] = ordem == "Data" ? "data_desc" : "Data";
             ViewData["OrdemCodigo"] = ordem == "Codigo" ? "codigo_desc" : "Codigo";
-
             if (procurarLinha != null)
             {
                 pagina = 1;
@@ -40,37 +39,38 @@ namespace MercadoSaoBento.Controllers
 
             ViewData["FiltroPesquisarAtual"] = procurarLinha;
 
-            var entradas = from e in _context.movEntradas select e;
+            var saidas = from s in _context.movSaidas select s;
             if (!String.IsNullOrEmpty(procurarLinha))
             {
-                entradas = entradas.Where(e => e.Produto.Nome.Contains(procurarLinha));
+                saidas = saidas.Where(s => s.Produto.Nome.Contains(procurarLinha));
             }
 
             switch (ordem)
             {
                 case "Data":
-                    entradas = entradas.OrderBy(e => e.dataEntrada);
+                    saidas = saidas.OrderBy(s => s.dataSaida);
                     break;
                 case "data_desc":
-                    entradas = entradas.OrderByDescending(e => e.dataEntrada);
+                    saidas = saidas.OrderByDescending(s => s.dataSaida);
                     break;
                 case "Codigo":
-                    entradas = entradas.OrderBy(e => e.movEntradaID);
+                    saidas = saidas.OrderBy(s => s.movSaidaID);
                     break;
                 case "codigo_desc":
-                    entradas = entradas.OrderByDescending(e => e.movEntradaID);
+                    saidas = saidas.OrderByDescending(s => s.movSaidaID);
                     break;
+
                 default:
-                    entradas = entradas.OrderBy(e => e.dataEntrada);
+                    saidas = saidas.OrderBy(s => s.dataSaida);
                     break;
             }
             int tamanhoPagina = 6;
-            return View(await Paginacao<movEntrada>.CreateAsync(entradas.Include(p => p.Produto).AsNoTracking(), pagina ?? 1, tamanhoPagina));
-            //var applicationDbContext = _context.movEntradas.Include(m => m.Produto);
+            return View(await Paginacao<movSaida>.CreateAsync(saidas.Include(m => m.MotivosSaida).Include(m => m.Produto).AsNoTracking(), pagina ?? 1, tamanhoPagina));
+            //var applicationDbContext = _context.movSaidas.Include(m => m.MotivosSaida).Include(m => m.Produto);
             //return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: movEntradas/Details/5
+        // GET: movSaidas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -78,46 +78,45 @@ namespace MercadoSaoBento.Controllers
                 return NotFound();
             }
 
-            var movEntrada = await _context.movEntradas
+            var movSaida = await _context.movSaidas
+                .Include(m => m.MotivosSaida)
                 .Include(m => m.Produto)
-                .SingleOrDefaultAsync(m => m.movEntradaID == id);
-            if (movEntrada == null)
+                .SingleOrDefaultAsync(m => m.movSaidaID == id);
+            if (movSaida == null)
             {
                 return NotFound();
             }
 
-            return View(movEntrada);
+            return View(movSaida);
         }
 
-        // GET: movEntradas/Create
+        // GET: movSaidas/Create
         public IActionResult Create()
         {
+            ViewData["MotivosSaidaID"] = new SelectList(_context.MotivosSaidas, "MotivosSaidaID", "motivo");
             ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome");
             return View();
         }
 
-        // POST: movEntradas/Create
+        // POST: movSaidas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada, int id)
+        public async Task<IActionResult> Create([Bind("movSaidaID,dataSaida,Quantidade,obs,ProdutoID,MotivosSaidaID")] movSaida movSaida)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movEntrada);
+                _context.Add(movSaida);
                 await _context.SaveChangesAsync();
-
-                //var produto = await _context.Produtos.SingleOrDefaultAsync(m => m.ProdutoID == id);
-                //produto.QtdEstoque += movEntrada.Quantidade;
-                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movEntrada.ProdutoID);
-            return View(movEntrada);
+            ViewData["MotivosSaidaID"] = new SelectList(_context.MotivosSaidas, "MotivosSaidaID", "motivo", movSaida.MotivosSaidaID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movSaida.ProdutoID);
+            return View(movSaida);
         }
 
-        // GET: movEntradas/Edit/5
+        // GET: movSaidas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -125,23 +124,24 @@ namespace MercadoSaoBento.Controllers
                 return NotFound();
             }
 
-            var movEntrada = await _context.movEntradas.SingleOrDefaultAsync(m => m.movEntradaID == id);
-            if (movEntrada == null)
+            var movSaida = await _context.movSaidas.SingleOrDefaultAsync(m => m.movSaidaID == id);
+            if (movSaida == null)
             {
                 return NotFound();
             }
-            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movEntrada.ProdutoID);
-            return View(movEntrada);
+            ViewData["MotivosSaidaID"] = new SelectList(_context.MotivosSaidas, "MotivosSaidaID", "motivo", movSaida.MotivosSaidaID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movSaida.ProdutoID);
+            return View(movSaida);
         }
 
-        // POST: movEntradas/Edit/5
+        // POST: movSaidas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada)
+        public async Task<IActionResult> Edit(int id, [Bind("movSaidaID,dataSaida, Quantidade,obs,ProdutoID,MotivosSaidaID")] movSaida movSaida)
         {
-            if (id != movEntrada.movEntradaID)
+            if (id != movSaida.movSaidaID)
             {
                 return NotFound();
             }
@@ -150,12 +150,12 @@ namespace MercadoSaoBento.Controllers
             {
                 try
                 {
-                    _context.Update(movEntrada);
+                    _context.Update(movSaida);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!movEntradaExists(movEntrada.movEntradaID))
+                    if (!movSaidaExists(movSaida.movSaidaID))
                     {
                         return NotFound();
                     }
@@ -166,11 +166,12 @@ namespace MercadoSaoBento.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movEntrada.ProdutoID);
-            return View(movEntrada);
+            ViewData["MotivosSaidaID"] = new SelectList(_context.MotivosSaidas, "MotivosSaidaID", "motivo", movSaida.MotivosSaidaID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", movSaida.ProdutoID);
+            return View(movSaida);
         }
 
-        // GET: movEntradas/Delete/5
+        // GET: movSaidas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -178,31 +179,32 @@ namespace MercadoSaoBento.Controllers
                 return NotFound();
             }
 
-            var movEntrada = await _context.movEntradas
+            var movSaida = await _context.movSaidas
+                .Include(m => m.MotivosSaida)
                 .Include(m => m.Produto)
-                .SingleOrDefaultAsync(m => m.movEntradaID == id);
-            if (movEntrada == null)
+                .SingleOrDefaultAsync(m => m.movSaidaID == id);
+            if (movSaida == null)
             {
                 return NotFound();
             }
 
-            return View(movEntrada);
+            return View(movSaida);
         }
 
-        // POST: movEntradas/Delete/5
+        // POST: movSaidas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movEntrada = await _context.movEntradas.SingleOrDefaultAsync(m => m.movEntradaID == id);
-            _context.movEntradas.Remove(movEntrada);
+            var movSaida = await _context.movSaidas.SingleOrDefaultAsync(m => m.movSaidaID == id);
+            _context.movSaidas.Remove(movSaida);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool movEntradaExists(int id)
+        private bool movSaidaExists(int id)
         {
-            return _context.movEntradas.Any(e => e.movEntradaID == id);
+            return _context.movSaidas.Any(e => e.movSaidaID == id);
         }
     }
 }

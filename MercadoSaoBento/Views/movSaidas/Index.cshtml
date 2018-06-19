@@ -1,0 +1,92 @@
+﻿@model Paginacao<MercadoSaoBento.Models.movSaida>
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Movimentações";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<div class="container-fluid"></div>
+<h2>Saída</h2>
+<a asp-action="Create" class="btn btn-primary">Gravar Nova Saída</a>
+<div class="flex-container">
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color pesquisar">
+            <p>
+                Pesquisar pelo Nome do Produto: <input type="text" name="procurarLinha" value="@ViewData["FiltroPesquisarAtual"]" />
+                <input type="submit" value="Pesquisar" class="btn btn-default" />
+                <a asp-action="Index">Lista Completa</a>
+            </p>
+        </div>
+    </form>
+</div>
+<table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemCodigo"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Código</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemData"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Data Movimentação</a>
+            </th>
+            <th>
+                Usuário
+            </th>
+            <th>
+                Motivo Saida
+            </th>
+            <th>
+                Produto
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movSaidaID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataSaida)
+                </td>
+                <td>
+                    @UserManager.GetUserName(User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotivosSaida.motivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produto.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.movSaidaID"><i class="glyphicon glyphicon-duplicate btn btn-default"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.movSaidaID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
+    var proximoDesabilitado = !Model.TemPaginaProxima ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-Ordem="@ViewData["OrdemAtual"]"
+   asp-route-pagina="@(Model.IndicePagina - 1)"
+   asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+   class="btn btn-default @anteriorDesabilitado"><i class="glyphicon glyphicon-chevron-left"></i></a>
+<a asp-action="Index"
+   asp-route-Ordem="@ViewData["OrdemAtual"]"
+   asp-route-pagina="@(Model.IndicePagina + 1)"
+   asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+   class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>

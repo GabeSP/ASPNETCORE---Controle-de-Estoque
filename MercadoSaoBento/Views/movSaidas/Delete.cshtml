@@ -1,12 +1,9 @@
-﻿@model MercadoSaoBento.Models.movEntrada
+﻿@model MercadoSaoBento.Models.movSaida
 @inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Movimentações";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/css/tabelas.css" rel="stylesheet" />
-<link href="~/css/customLayout.css" rel="stylesheet" />
-<link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Excluir</h2>
 
@@ -14,22 +11,28 @@
     <div>
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.nmrDocumento)
+                @Html.DisplayNameFor(model => model.dataSaida)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.nmrDocumento)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.dataEntrada)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.dataEntrada)
+                @Html.DisplayFor(model => model.dataSaida)
             </dd>
             <dt>
                 Usuário
             </dt>
             <dd>
                 @UserManager.GetUserName(User)
+            </dd>
+            <dt>
+                Motivo
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MotivosSaida.motivo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Produto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Produto.Nome)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Quantidade)
@@ -43,17 +46,11 @@
             <dd>
                 @Html.DisplayFor(model => model.obs)
             </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Produto)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Produto.Nome)
-            </dd>
         </dl>
         </dl>
 
         <form asp-action="Delete">
-            <input type="hidden" asp-for="movEntradaID" />
+            <input type="hidden" asp-for="movSaidaID" />
             <input type="submit" value="Confirmar" class="btn btn-danger" />
             <a asp-action="Index" class="btn btn-default">Voltar</a>
         </form>

@@ -14,6 +14,8 @@ namespace MercadoSaoBento.Models
         [Display(Name = "Data do Movimento")]
         public DateTime dataSaida { get; set; }
 
+        public int Quantidade { get; set; }
+
         [Display(Name = "Observação")]
         public String obs { get; set; }
         
