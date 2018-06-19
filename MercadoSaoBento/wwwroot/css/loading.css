@@ -88,3 +88,20 @@ footer {
     }
     
 }
+@media(max-width: 768px) {
+    .botao-principal {
+        left: 38%!important;
+        bottom: 20%;
+    }
+}
+@media (max-width: 900px){
+    .botao-principal{
+        left: 42%!important;
+        top: 
+    }
+}
+@media (max-width: 480px) {
+    .botao-principal {
+        left:36%!important;
+    }
+}

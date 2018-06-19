@@ -19,7 +19,7 @@ namespace MercadoSaoBento.Controllers
             _context = context;
         }
 
-        // GET: movEntradas
+        // GET: movEntradast
         public async Task<IActionResult> Index(string ordem,
             string filtroAtual,
             string procurarLinha,
