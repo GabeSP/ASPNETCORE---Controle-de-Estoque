@@ -8,6 +8,7 @@ namespace MercadoSaoBento.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        public int id { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

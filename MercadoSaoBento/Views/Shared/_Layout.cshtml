@@ -49,6 +49,17 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#movimentacao" data-toggle="collapse" aria-expanded="false">
+                        <i class="glyphicon glyphicon-transfer"></i>
+                        Movimentações
+                    </a>
+                    <ul class="collapse list-unstyled" id="movimentacao">
+                        <li><a asp-area="" asp-controller="movEntradas" asp-action="Index">Entrada</a></li>
+                        <li><a asp-area="" asp-controller="movSaidas" asp-action="Index">Saída</a></li>
+                        <li><a href="#">Relatórios</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a asp-area="" asp-controller="Home" asp-action="Contact">
                         <i class="glyphicon glyphicon-info-sign"></i>
                         Ajuda

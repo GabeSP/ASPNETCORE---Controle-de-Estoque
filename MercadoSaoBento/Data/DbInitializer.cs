@@ -24,7 +24,17 @@ namespace MercadoSaoBento.Data
             {
                 return;
             }
-
+            if (context.MotivosSaidas.Any())
+            {
+                return;
+            }
+            var motivo = new MotivosSaida[]
+            {
+                new MotivosSaida{motivo="Ajuste Estoque"},
+                new MotivosSaida{motivo="Venda"},
+                new MotivosSaida{motivo="Furto"},
+                new MotivosSaida{motivo="Entrada Errada"}
+            };
             var fornecedores = new Fornecedor[]
             {
                 new Fornecedor{Nome="Coca Cola", CNPJ="12345678901234", Telefone="(15)1234-5678"},

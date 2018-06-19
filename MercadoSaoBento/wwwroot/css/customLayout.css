@@ -84,7 +84,8 @@ a, a:hover, a:focus {
 #sidebar.active ul li a {
     padding: 20px 10px;
     text-align: center;
-    font-size: .85em;
+    font-size: .88em;
+    word-break: break-word;
 }
 
     #sidebar.active ul li a i {
@@ -140,6 +141,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     content: '\e259';
     display: block;
     position: absolute;
+    top: 15px;
     right: 20px;
     font-family: 'Glyphicons Halflings';
     font-size: .6em;
@@ -149,6 +151,15 @@ a[aria-expanded="true"]::before {
     content: '\e260';
 }
 
+#sidebar.active a[aria-expanded="false"]::before,
+#sidebar.active a[aria-expanded="true"]::before {
+    top: auto;
+    bottom: 5px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
 
 ul ul a {
     font-size: 0.9em !important;

@@ -18,6 +18,9 @@ namespace MercadoSaoBento.Data
         public DbSet<Fornecedor> Fornecedores { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<movEntrada> movEntradas { get; set; }
+        public DbSet<movSaida> movSaidas { get; set; }
+        public DbSet<MotivosSaida> MotivosSaidas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +28,11 @@ namespace MercadoSaoBento.Data
             modelBuilder.Entity<Fornecedor>().ToTable("Fornecedor");
             modelBuilder.Entity<Produto>().ToTable("Produto");
             modelBuilder.Entity<Categoria>().ToTable("Categoria");
+            modelBuilder.Entity<movEntrada>().ToTable("movEntrada");
+            modelBuilder.Entity<movSaida>().ToTable("movSaida");
+            modelBuilder.Entity<MotivosSaida>().ToTable("MotivosSaida");
         }
+
+        
     }
 }

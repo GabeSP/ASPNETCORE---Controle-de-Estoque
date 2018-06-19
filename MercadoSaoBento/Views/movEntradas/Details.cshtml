@@ -1,0 +1,50 @@
+﻿@model MercadoSaoBento.Models.movEntrada
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/tabelas.css" rel="stylesheet" />
+<link href="~/css/customLayout.css" rel="stylesheet" />
+<link href="~/css/home.css" rel="stylesheet" />
+<div class="container-fluid">
+    <h2>Detalhes</h2>
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nmrDocumento)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nmrDocumento)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.dataEntrada)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dataEntrada)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Quantidade)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.obs)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.obs)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Produto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Produto.Descricao)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    </div>
+</div>
