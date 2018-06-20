@@ -101,18 +101,25 @@ namespace MercadoSaoBento.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada, int? id)
+        public async Task<IActionResult> Create([Bind("movEntradaID,nmrDocumento,dataEntrada,Quantidade,obs,ProdutoID")] movEntrada movEntrada)
         {
-
-            //var produto = await _context.movEntradas
-            //    .Include(p => p.Produto)
-                //.AsNoTracking()
-                //.SingleAsync(m => m.movEntradaID == id);
-
+            if(movEntrada.nmrDocumento < 1)
+            {
+                ModelState.AddModelError("nrmDocumento", "Número do documento inválido.");
+            }
+            if (movEntrada.Quantidade < 1) {
+                ModelState.AddModelError("Quantidade", "Quantidade inválida");
+            }
+            if (movEntrada.dataEntrada < DateTimeOffset.UtcNow.DateTime.Date)
+            {
+                ModelState.AddModelError("dataEntrada", "A Data não pode ser anterior que a Data Atual.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(movEntrada);
-                //produto.Produto.QtdEstoque += movEntrada.Quantidade;
+                var produto = await _context.Produtos
+                .FirstAsync(m => m.ProdutoID == movEntrada.ProdutoID);
+                produto.QtdEstoque += movEntrada.Quantidade;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

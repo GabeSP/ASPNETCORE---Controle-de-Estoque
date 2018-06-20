@@ -12,6 +12,7 @@ namespace MercadoSaoBento.Models
     {
         public int movEntradaID { get; set; }
 
+        [Required(ErrorMessage = "Nº do documento inválido.")]
         [Display(Name = "Nº Documento")]
         public int nmrDocumento { get; set; }
 

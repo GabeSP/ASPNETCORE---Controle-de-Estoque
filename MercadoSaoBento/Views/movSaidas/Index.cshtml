@@ -79,6 +79,7 @@
         var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
         var proximoDesabilitado = !Model.TemPaginaProxima ? "disabled" : "";
     }
+    <div class="pagina">
     <a asp-action="Index"
        asp-route-Ordem="@ViewData["OrdemAtual"]"
        asp-route-pagina="@(Model.IndicePagina - 1)"
@@ -89,5 +90,6 @@
        asp-route-pagina="@(Model.IndicePagina + 1)"
        asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
        class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
-</div>
+    </div>
+    <div class="espaco"></div>
 </div>

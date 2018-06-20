@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Preco " class="control-label"></label>
-                    <input asp-for="Preco" class="form-control" />
+                    <input asp-for="Preco" id="dinheiro"class="form-control" />
                     <span asp-validation-for="Preco" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -44,8 +44,8 @@
                     <select asp-for="CategoriaID" class="form-control" asp-items="ViewBag.CategoriaID"></select>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-default">Voltar</a>
+                    <input type="submit" value="Cadastrar" class="btn btn-primary margin" />
+                    <a asp-action="Index" class="btn btn-default margin">Voltar</a>
                 </div>
             </form>
         </div>
@@ -54,4 +54,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }

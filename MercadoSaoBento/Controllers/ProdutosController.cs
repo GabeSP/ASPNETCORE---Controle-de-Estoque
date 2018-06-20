@@ -74,7 +74,7 @@ namespace MercadoSaoBento.Controllers
                     produtos = produtos.OrderBy(p => p.ProdutoID);
                     break;
             }
-            int tamanhoPagina = 6;
+            int tamanhoPagina = 8;
             return View(await Paginacao<Produto>.CreateAsync(produtos.Include(p => p.Categoria).Include(p => p.Fornecedor).AsNoTracking(), pagina ?? 1, tamanhoPagina));
         }
 
@@ -116,6 +116,10 @@ namespace MercadoSaoBento.Controllers
         {
             try
             {
+                if(produto.QtdEstoque < 1)
+                {
+                    ModelState.AddModelError("QtdEstoque", "Quantidade Inválida");
+                }
                 if (ModelState.IsValid)
                 {
                     _context.Add(produto);
@@ -242,6 +246,7 @@ namespace MercadoSaoBento.Controllers
         }
         public async Task<IActionResult> DecrementaQtd(int id)
         {
+            
             var produto = await _context.Produtos
             .SingleOrDefaultAsync(m => m.ProdutoID == id);
             produto.QtdEstoque--;

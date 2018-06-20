@@ -9,11 +9,12 @@
 <link href="~/css/home.css" rel="stylesheet" />
 <div class="container-fluid">
     <h2>Consultar Produtos</h2>
-    <a asp-action="Create" class="btn btn-default" id="invisivel">Cadastrar</a>
-    <div class="flex-container">
+        <div class="flex-container">
         <form asp-action="Index" method="get">
             <div class="form-actions no-color pesquisar">
                 <p>
+
+                    <a asp-action="Create" class="btn btn-primary" id="invisivel">Cadastrar</a>
                     Pesquisar pelo Nome: <input type="text" name="procurarLinha" value="@ViewData["FiltroPesquisarAtual"]" />
                     <input type="submit" value="Pesquisar" class="btn btn-default botao-pesquisar" />
                     <a asp-action="Index">Lista Completa</a>
@@ -21,29 +22,29 @@
             </div>
         </form>
     </div>
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemCodigo"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Código</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemNome"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Nome</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemPreco"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Preço</a>
-                </th>
-                <th>
-                    Quantidade
-                </th>
-                <th id="invisivel">
-                    Descrição
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemCodigo"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Código</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemNome"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Nome</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-Ordem="@ViewData["OrdemPreco"]" asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]">Preço</a>
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th id="invisivel">
+                            Descrição
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -68,9 +69,9 @@
                         <a asp-action="Delete" asp-route-id="@item.ProdutoID" id="invisivel"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
+    }
+                </tbody>
+            </table>
     <div class="modal" id="modal"></div>
     @{
         var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
@@ -86,10 +87,7 @@
        asp-route-pagina="@(Model.IndicePagina + 1)"
        asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
        class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
-    <div class="botoes-top">
-        <a asp-area="" asp-controller="Fornecedores" asp-action="Index" class="btn btn-default botao-top">Fornecedores</a>
-        <a asp-area="" asp-controller="Categorias" asp-action="Index" class="btn btn-default botao-top">Categorias</a>
-    </div>
+
     <div class="espaco"></div>
 </div>
 

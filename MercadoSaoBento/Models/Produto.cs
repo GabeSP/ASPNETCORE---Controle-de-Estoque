@@ -22,6 +22,7 @@ namespace MercadoSaoBento.Models
             Display(Name = "Preço")]
         public decimal Preco { get; set; }
 
+
         [Required(ErrorMessage = "A Quantidade do produto é obrigatório", AllowEmptyStrings = false),
             Display(Name = "Quantidade")]
         public int QtdEstoque { get; set; }

@@ -11,20 +11,22 @@
 img {
     width: 80px;
     height: 100px;
-    position: absolute;
+    position: fixed;
     right: 2%;
     bottom: 5%;
 }
 .botao-principal {
     position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     font-family: 'Century Gothic', sans-serif;
-    font-weight: bolder!important;
+    font-weight: bolder !important;
     text-transform: uppercase;
-    left: 45%;
-    bottom: 25%;
     color: #262626;
     background-color: #FFF;
-    border: 1px solid #000!important;
+    border: 1px solid #000 !important;
 }
     .botao-principal:hover {
         background-color: saddlebrown;
@@ -32,7 +34,7 @@ img {
         transition: ease .7s;
     }
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background: #000;
     color: #fff;
@@ -87,21 +89,4 @@ footer {
         background-position: 2000px 100px;
     }
     
-}
-@media(max-width: 768px) {
-    .botao-principal {
-        left: 38%!important;
-        bottom: 20%;
-    }
-}
-@media (max-width: 900px){
-    .botao-principal{
-        left: 42%!important;
-        top: 
-    }
-}
-@media (max-width: 480px) {
-    .botao-principal {
-        left:36%!important;
-    }
 }

@@ -12,6 +12,7 @@ namespace MercadoSaoBento.Models
         public int movSaidaID { get; set; }
 
         [Display(Name = "Data do Movimento")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime dataSaida { get; set; }
 
         public int Quantidade { get; set; }

@@ -66,8 +66,7 @@ namespace MercadoSaoBento.Controllers
             }
             int tamanhoPagina = 6;
             return View(await Paginacao<movSaida>.CreateAsync(saidas.Include(m => m.MotivosSaida).Include(m => m.Produto).AsNoTracking(), pagina ?? 1, tamanhoPagina));
-            //var applicationDbContext = _context.movSaidas.Include(m => m.MotivosSaida).Include(m => m.Produto);
-            //return View(await applicationDbContext.ToListAsync());
+            
         }
 
         // GET: movSaidas/Details/5
@@ -105,9 +104,20 @@ namespace MercadoSaoBento.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("movSaidaID,dataSaida,Quantidade,obs,ProdutoID,MotivosSaidaID")] movSaida movSaida)
         {
+            if(movSaida.Quantidade < 1)
+            {
+                ModelState.AddModelError("Quantidade", "Quantidade inválida");
+            }
+            if (movSaida.dataSaida < DateTimeOffset.UtcNow.DateTime.Date)
+            {
+                ModelState.AddModelError("dataSaida", "A Data não pode ser anterior a Data Atual");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(movSaida);
+                var produto = await _context.Produtos
+                    .FirstAsync(m => m.ProdutoID == movSaida.ProdutoID);
+                produto.QtdEstoque -= movSaida.Quantidade;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

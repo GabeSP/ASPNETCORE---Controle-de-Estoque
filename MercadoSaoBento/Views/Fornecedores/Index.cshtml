@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MercadoSaoBento.Models.Fornecedor>
+﻿@model Paginacao<MercadoSaoBento.Models.Fornecedor>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,13 +16,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    Nome
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CNPJ)
+                    CNPJ
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Telefone)
+                    Telefone
                 </th>
                 <th></th>
             </tr>
@@ -49,8 +49,22 @@
             }
         </tbody>
     </table>
+    @{
+        var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
+        var proximoDesabilitado = !Model.TemPaginaProxima ? "disabled" : "";
+    }
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina - 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @anteriorDesabilitado"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a asp-action="Index"
+       asp-route-Ordem="@ViewData["OrdemAtual"]"
+       asp-route-pagina="@(Model.IndicePagina + 1)"
+       asp-route-filtroAtual="@ViewData["FiltroPesquisarAtual"]"
+       class="btn btn-default @proximoDesabilitado"><i class="glyphicon glyphicon-chevron-right"></i></a>
     <div>
-        <a asp-area="" asp-controller="Produtos" asp-action="Index" class="btn btn-default">Voltar</a>
+        <a asp-area="" asp-controller="Produtos" asp-action="Index" style="margin-top: 2%;" class="btn btn-default">Voltar</a>
     </div>
 </div>
 @section Scripts {
