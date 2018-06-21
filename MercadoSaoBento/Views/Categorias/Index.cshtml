@@ -29,8 +29,8 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td style="padding-left: 15%;">
-                        <a asp-action="Edit" asp-route-id="@item.CategoriaID"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.CategoriaID"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.CategoriaID" id="invisivel"><i class="glyphicon glyphicon-pencil btn btn-info"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoriaID" id="invisivel"><i class="glyphicon glyphicon-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
             }

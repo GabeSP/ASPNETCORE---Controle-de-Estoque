@@ -193,6 +193,7 @@ ul ul a {
         max-width: 80px;
         text-align: center;
         margin-left: -80px !important;
+        height: 100vh;
     }
 
         #sidebar.active {
@@ -244,10 +245,6 @@ ul ul a {
             font-size: 1em;
         }
 
-    #link-sair {
-        left: -25%;
-        width: 124.5%;
-    }
 }
 @media (width: 320px) {
     body {
@@ -262,7 +259,11 @@ ul ul a {
         margin-left: -25%!important;
     }
     .container-fluid {
-        margin-left: -22%!important;
-        margin-top: 12%!important;
+        margin-left: -26%!important;
+        margin-top: 15%!important;
+        z-index: -1;
+    }
+    .container-fluid h2 {
+        font-size: 2em;
     }
 }
